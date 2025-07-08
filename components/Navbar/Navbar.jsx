@@ -39,7 +39,7 @@ export default function Navbar() {
               Login
             </Link>
             <Link
-              href="/get-started"
+              href="/register/coaching"
               className="bg-[#079669] text-white px-4 py-2 rounded hover:bg-opacity-80 transition"
             >
               Get Started
@@ -111,7 +111,7 @@ export default function Navbar() {
             Login
           </Link>
           <Link
-            href="/get-started"
+            href="/register/coaching"
             className="block bg-primary text-white px-4 py-2 rounded hover:bg-opacity-80 transition text-center"
           >
             Get Started
