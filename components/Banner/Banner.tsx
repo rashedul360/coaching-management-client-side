@@ -15,7 +15,7 @@ const Banner = () => {
           </p>
           <div className="hidden md:flex items-center space-x-4">
             <Link
-              href="/get-started"
+              href="/register/coaching"
               className="bg-[#079669] text-white px-4 py-2 rounded hover:bg-opacity-80 transition"
             >
               Get Started

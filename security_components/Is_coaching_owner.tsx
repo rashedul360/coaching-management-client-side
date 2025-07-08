@@ -2,8 +2,8 @@
 import Login from '@/app/login/Login';
 import React, { useState, ReactNode, useEffect } from 'react';
 
-const Is_logged_in = ({ children }: { children: ReactNode }) => {
-  const [is_logged_in, set_is_logged_in] = useState(false);
+const Is_coaching_owner = ({ children }: { children: ReactNode }) => {
+  const [is_owner, set_is_owner] = useState(false);
   const [is_loading, set_is_loading] = useState(true);
   const [is_error, set_is_error] = useState(false);
   const [responded_data, set_responded_data] = useState({});
@@ -14,7 +14,7 @@ const Is_logged_in = ({ children }: { children: ReactNode }) => {
         const response = await data.json();
         if (response) {
           set_is_loading(false);
-          set_is_logged_in(true);
+          set_is_owner(true);
         }
         set_responded_data(response);
         console.log(response);
@@ -31,10 +31,12 @@ const Is_logged_in = ({ children }: { children: ReactNode }) => {
     <div>
       {is_error && <h1>error</h1>}
       {is_loading && <h1>loading...</h1>}
-      {!is_error && !is_loading && is_logged_in && <h1>{children}</h1>}
-      {!is_error && !is_loading && !is_logged_in && <Login />}
+      {!is_error && !is_loading && is_owner && <h1>{children}</h1>}
+      {!is_error && !is_loading && !is_owner && (
+        <h1 className="text-black text-2xl text-center">Can't access</h1>
+      )}
     </div>
   );
 };
 
-export default Is_logged_in;
+export default Is_coaching_owner;
