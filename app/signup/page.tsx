@@ -124,7 +124,7 @@ const page = () => {
             type="submit"
             className="bg-green-500 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
           >
-            Sign In
+            Registration
           </button>
         </form>
         {!data?.success && data.message.length > 0 && (

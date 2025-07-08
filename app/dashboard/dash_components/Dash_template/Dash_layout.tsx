@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { FaBars, FaTimes, FaHome, FaCodeBranch } from 'react-icons/fa';
 import Time_maker from '../time_maker';
 import { SiGoogleclassroom } from 'react-icons/si';
+import { CgLogOut } from 'react-icons/cg';
+import { api_url } from '@/app/login/Login';
 
 export default function DashboardLayout({
   children,
@@ -12,7 +14,17 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  const handle_oug_out = () => {
+    fetch(`${api_url}/logout`, {
+      method: 'GET',
+      credentials: 'include',
+    }).then(async (res) => {
+      const data = await res.json();
+      if (data?.success == true) {
+        window.location.reload();
+      }
+    });
+  };
   return (
     <div className="flex h-screen  bg-gray-100">
       {/* Sidebar */}
@@ -61,6 +73,16 @@ export default function DashboardLayout({
               <span className="ms-1 text-lg">Batches </span>
             </div>
           </a>
+
+          <div
+            onClick={() => handle_oug_out()}
+            className="p-0 m-0 block transition text-gray-700 hover:text-primary p-3 px-2 border-white border-4 border-l-white-600  hover:bg-green-100 hover:border-4 hover:border-l-green-600 mb-0 border-t-0"
+          >
+            <div className="flex flex-wrap items-center">
+              <CgLogOut />
+              <span className="ms-1 text-lg">Logout </span>
+            </div>
+          </div>
         </nav>
       </aside>
 
