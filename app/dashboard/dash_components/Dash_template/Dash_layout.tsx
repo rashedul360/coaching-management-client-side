@@ -7,6 +7,7 @@ import Time_maker from '../time_maker';
 import { SiGoogleclassroom } from 'react-icons/si';
 import { CgLogOut } from 'react-icons/cg';
 import { api_url } from '@/app/login/Login';
+import { BiMoney } from 'react-icons/bi';
 
 export default function DashboardLayout({
   children,
@@ -71,6 +72,15 @@ export default function DashboardLayout({
             <div className="flex flex-wrap items-center">
               <SiGoogleclassroom />
               <span className="ms-1 text-lg">Batches </span>
+            </div>
+          </a>
+          <a
+            href="/dashboard/collect/fee"
+            className="p-0 m-0 block transition text-gray-700 hover:text-primary p-3 px-2 border-white border-4 border-l-white-600  hover:bg-green-100 hover:border-4 hover:border-l-green-600 mb-0 border-t-0"
+          >
+            <div className="flex flex-wrap items-center">
+              <BiMoney />
+              <span className="ms-1 text-lg">Fee collection </span>
             </div>
           </a>
 

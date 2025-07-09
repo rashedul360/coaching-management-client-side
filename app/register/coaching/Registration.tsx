@@ -177,7 +177,6 @@ const Coaching_registration = () => {
                   name="center_phone"
                   onChange={(e) => setCenterPhoneNumber(e.target.value)}
                   placeholder="center phone number"
-                  defaultValue={'login credential number'}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-400 focus:outline-none"
                 />
               </div>

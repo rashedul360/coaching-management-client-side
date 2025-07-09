@@ -4,6 +4,8 @@ type Props = {
   amount: number;
   title: string;
   color: 'green' | 'red' | 'sky' | 'purple'; // Define allowed colors
+  text: string;
+  position: string;
 };
 
 const colorMap: Record<Props['color'], { text: string; bg: string }> = {
@@ -24,11 +26,21 @@ const colorMap: Record<Props['color'], { text: string; bg: string }> = {
     bg: 'bg-purple-100',
   },
 };
-const Net_income_summary_holder = ({ color, title, amount }: Props) => {
+const Net_income_summary_holder = ({
+  color,
+  title,
+  amount,
+  text,
+  position,
+}: Props) => {
   return (
     <div className={`mb-2 p-5 ${colorMap[color].bg} rounded-md`}>
       <h1 className={`text-sm text-${color}-400 font-bold`}>{title}</h1>
-      <h1 className={`text-lg font-bold ${colorMap[color].text}`}>৳{amount}</h1>
+      <h1 className={`text-lg font-bold ${colorMap[color].text}`}>
+        {position == 'pre' && '৳'}
+        {amount}
+        {position == 'post' && '%'}
+      </h1>
     </div>
   );
 };

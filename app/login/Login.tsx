@@ -1,8 +1,11 @@
 'use client';
+
+import { usePathname } from 'next/navigation';
 import React, { FormEvent, useState } from 'react';
 
 export const api_url = process.env.NEXT_PUBLIC_API_URL;
 const Login = () => {
+  const pathname = usePathname();
   const [phone, set_phone] = useState('');
   const [password, set_password] = useState('');
   const [data, set_data] = useState({ success: true, message: '' });
@@ -23,7 +26,7 @@ const Login = () => {
       window.location.href = '/dashboard';
     } else {
       if (data?.success) {
-        window.location.href = '/portal';
+        window.location.href = pathname || '/portal';
       }
     }
   };

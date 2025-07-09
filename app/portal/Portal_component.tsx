@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   FaUserCircle,
   FaCog,
@@ -10,11 +10,7 @@ import {
 import { api_url } from '../login/Login';
 
 export default function Portal() {
-  const user = {
-    name: 'Rashedul Islam',
-    email: 'rashedul@example.com',
-    joined: 'Jan 15, 2025',
-  };
+  const [user, set_user] = useState<any>();
   const handle_oug_out = () => {
     fetch(`${api_url}/logout`, {
       method: 'GET',
@@ -26,13 +22,26 @@ export default function Portal() {
       }
     });
   };
+  useEffect(() => {
+    fetch(`${api_url}/user`, {
+      credentials: 'include',
+    }).then(async (res) => {
+      const data = await res.json();
+      if (data) {
+        console.log(data);
+        set_user(data);
+      }
+    });
+  }, []);
   return (
     <div className="min-h-screen bg-gray-100 p-6 text-black">
       <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-2xl p-6 space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-2xl font-bold">Welcome, {user.name} 👋</h2>
+            <h2 className="text-2xl font-bold">
+              Welcome,{user?.user?.name} 👋
+            </h2>
             <p className="text-sm text-gray-500">Your personal dashboard</p>
           </div>
           <div className="flex items-center gap-4 text-xl text-gray-600">
@@ -50,9 +59,11 @@ export default function Portal() {
         <div className="flex items-center gap-6 bg-gray-50 p-4 rounded-xl">
           <FaUserCircle className="text-blue-500 text-6xl" />
           <div>
-            <h3 className="text-lg font-semibold">{user.name}</h3>
-            <p className="text-sm text-gray-600">{user.email}</p>
-            <p className="text-xs text-gray-500">Joined: {user.joined}</p>
+            <h3 className="text-lg font-semibold">{user?.user?.name}</h3>
+            <p className="text-sm text-gray-600">{user?.user?.email}</p>
+            <p className="text-xs text-gray-500">
+              Joined: {user?.user?.createdAt}
+            </p>
           </div>
         </div>
 
@@ -61,16 +72,6 @@ export default function Portal() {
           <button className="flex items-center gap-2 bg-blue-100 text-blue-700 rounded-xl p-4 hover:bg-blue-200 transition">
             <FaUser /> Change Password
           </button>
-        </div>
-
-        {/* Recent Activity */}
-        <div>
-          <h4 className="text-lg font-semibold mb-2">Orders</h4>
-          <ul className="space-y-2 text-sm text-gray-700 list-disc list-inside">
-            <li>Logged in from a new device</li>
-            <li>Updated profile picture</li>
-            <li>Completed onboarding checklist</li>
-          </ul>
         </div>
       </div>
     </div>

@@ -37,7 +37,10 @@ const All_batches = () => {
       {batches?.length > 0 ? (
         <>
           {batches?.map((batch: Batch) => (
-            <div className="bg-white shadow-md rounded-2xl p-6 max-w-md w-full">
+            <div
+              className="bg-white shadow-md rounded-2xl p-6 max-w-md w-full"
+              key={batch.batch_id}
+            >
               <h2 className="text-xl font-bold text-gray-800 mb-2">
                 {batch?.batch_name}
               </h2>
@@ -72,7 +75,9 @@ const All_batches = () => {
                   ))}
                 </ul>
               </div>
-              <Link href={`/dashboard/batches/batch?batch-id=dfgdfg`}>
+              <Link
+                href={`/dashboard/batches/batch?batch-id=${batch.batch_id}&batch-name=${batch.batch_name}`}
+              >
                 <button
                   type="button"
                   className="cursor-pointer bg-green-600 hover:bg-green-600 p-5 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200"
