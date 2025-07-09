@@ -26,7 +26,11 @@ const Login = () => {
       window.location.href = '/dashboard';
     } else {
       if (data?.success) {
-        window.location.href = pathname || '/portal';
+        if (pathname == '/login') {
+          window.location.href = '/portal';
+        } else {
+          window.location.href = pathname || '/portal';
+        }
       }
     }
   };
